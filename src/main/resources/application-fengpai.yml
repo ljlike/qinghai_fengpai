@@ -1,0 +1,76 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fengpai?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: sqlpass
+  jmx:
+    default-domain: daoyin_release
+#公众号支付,商户
+wxPay:
+  appId: wx076392ed4befeb3d
+  mchId: 1510467621
+  mchKey: zN2BV0yqJhGEEcFrtZfSx1B0HnvlHqoL
+  body: 商品购买
+  notifyUrl: https://fengpai.daoyintech.com/daoyin_release/pay/notify
+  tradeType: JSAPI
+  payUrl: https://api.mch.weixin.qq.com/pay/unifiedorder
+  keyPath: classpath:apiclient_cert.p12
+#小程序
+wx:
+  appId: wx076392ed4befeb3d
+  appSecret: 797c45f9bf5fcd5338eacdd0b556a0b5
+  host: https://fengpai.daoyintech.com/daoyin_release
+  hostUrl: https://fengpai.daoyintech.com
+  applet: pages/index/main
+  spbill_create_ip: 127.0.0.1
+  service_open_id: omUlo5O1RtmnT0llBESYqFPKQguk
+  service_template_id: kWjqHoFV2Tzi2Q4rXcSfwUgM73qnaqUk4rCi3tcMThk
+  home_page: pages/index/main
+# 公众号
+official:
+  appId: wxfb9e26b638aa9850
+  appSecret: d347eb6995809a05de9b50938310374c
+
+integral:
+  min_withdraw_standard: 1000
+  min_withdraw_money: 10
+  min_withdraw: 100
+  autoWithdrawIntegralLine : 3000
+  money_integral_percent: 1
+  integral_money_percent: 0.1
+  direct_profit_percent: 0.03
+  indirect_profit_percent: 0.03
+  subscribeRedPacket: 100
+  receiveIntegralForAllJoiners: 5
+  team_person: 12
+  teamProfitPercent: 0.01
+  maxWithdrawOneDay: 200
+pay:
+  freight_price: 8
+queues:
+  expireAndDeleteOrderDelay: expireAndDeleteOrderDelayQueue
+  orderLastOneHourDelay: orderLastOneHourDelay
+  orderDelay: orderDelayQueue
+qiniu:
+  accessKey: GOs-mr6p8LxNmXvRmbthohkEkfridDR8oXIf1-7P
+  secretKey: 3JNcupglgIdUMpXWByKVvyKfh8HrCvTJdVhsiUEi
+  bucket: fengpai
+  domain: http://pemeusmpv.bkt.clouddn.com
+user:
+  bg: http://pemeusmpv.bkt.clouddn.com/qrCode_bg_new.png
+bargain:
+  bg: http://ovk4yx5in.bkt.clouddn.com/bargain/back.png
+  zhiwen: http://pemeusmpv.bkt.clouddn.com/zhiwen.png
+bargain_help:
+  max_helper_count: 3
+  max_bargaining_percent: 0.25
+  random_between_help_price: 2
+  steps: 5,10,12
+  base_scale: 16
+  draw_product_total_percent: 0.2
+  draw_product_second_percent: 0.8
+draw:
+  integral: 100000
+  basicMin: 1
+  basicMax: 10

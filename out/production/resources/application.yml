@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: fengpai
+  mvc:
+    throw-exception-if-no-handler-found: true
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
+  session:
+    store-type: redis
+    timeout: 7200
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+server:
+  port: 80
+  servlet:
+    context-path: /daoyin_release
+profit_percent: 0.03

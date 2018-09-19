@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="navbar-default sidebar" role="navigation" th:fragment="sidebar">
+    <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+        <ul class="nav" id="side-menu">
+            <li class="nav-small-cap m-t-10">--- 用户卡卷管理</li>
+            <li>
+                <a data-th-href="@{/admin}" class="waves-effect active">
+                <i class="linea-icon linea-basic fa-fw" data-icon="v"></i>
+                <span class="hide-menu"> 卡卷查询 </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

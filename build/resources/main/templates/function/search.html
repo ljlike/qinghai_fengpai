@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layout/application}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+   <title>查询卡卷号</title>
+    <link rel="icon" type="image/x-icon" href="/daoyin_release/image/shifangba.png">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="white-box">
+                    <h3 class="box-title">卡卷查询</h3>
+                    <div class="slimscrollright">
+                        <form data-th-action="@{/admin}" method="post" class="form-horizontal">
+                            <div class="form-group col-md-12">
+                                <label class="col-md-12">用户卡卷号码</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="cardCode" placeholder="请输入用户卡卷号码" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">查询</button>
+                            </div>
+                        </form>
+                    </div>
+                    <h3 class="box-title">未使用卡卷列表</h3>
+                    <div class="slimscrollright">
+                        <form data-th-action="@{/admin/list}" method="get" class="form-horizontal">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">查询</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

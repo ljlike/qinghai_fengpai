@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layout/application}"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="icon" type="image/x-icon" href="/daoyin_release/image/shifangba.png">
+</head>
+<body>
+<div class="container">
+    <div layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="white-box">
+                    <div class="slimscrollright">
+                        <table class="table table-striped dataTable" id="dataTable">
+                            <thead>
+                            <tr>
+                                <!--<th>微信卡卷号</th>-->
+                                <th>用户卡卷号码</th>
+                                <th>状态</th>
+                                <th>有效时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!--<td data-th-text="${user_card.cardId}"></td>-->
+                                    <td data-th-text="${user_card.userCardCode}"></td>
+                                    <td data-th-text="${user_card.status == 1 ? '待领取':user_card.status == 2 ? '未使用':user_card.status == 3 ? '使用中':'已使用'}"></td>
+                                    <td data-th-text="${#dates.format(user_card.expire, 'yyyy-MM-dd HH:mm' )}"></td>
+                                    <td>
+                                        <form data-th-action="@{/admin/{cardCode}/destroy(cardCode=${user_card.userCardCode})}" method="get" class="form-horizontal">
+                                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" th:if="${user_card.status == 2}">核销</button>
+                                        </form>
+                                       <!-- <a class="btn btn-primary"  th:if="${user_card.status == 3}"
+                                           data-th-href="@{/admin/{cardCode}/destroy(cardCode=${user_card.userCardCode})}">核销</a>-->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

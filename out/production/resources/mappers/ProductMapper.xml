@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daoyintech.daoyin_release.mappers.ProductMapper">
+	
+	<resultMap id="ProductResult" type="com.daoyintech.daoyin_release.response.result.ProductResult">
+		<result property="productId" column="product_id"/>
+		<result property="productName" column="product_name"/>
+		<result property="imgUrl" column="img_url"/>
+		<result property="sellPrice" column="sell_price"/>
+		<result property="productTypeName" column="product_type_name"/>
+	</resultMap>
+
+	<resultMap id="ProductFavoriteResult" type="com.daoyintech.daoyin_release.response.result.ProductFavoriteResult">
+		<result property="productId" column="product_id"/>
+		<result property="productName" column="product_name"/>
+		<result property="showPrice" column="show_price"/>
+		<result property="sellPrice" column="sell_price"/>
+		<result property="imgUrl" column="img_url"/>
+		<result property="userId" column="user_id"/>
+	</resultMap>
+
+    <select id="seekProductLikeProductName" resultMap="ProductResult">
+    	SELECT
+			pt.`name` AS product_type_name,
+			p.id AS product_id,
+			p.`name` AS product_name,
+			p.icon_key AS img_url
+		FROM
+			products p
+		LEFT JOIN sub_product_types spt ON p.sub_product_type_id = spt.id
+		LEFT JOIN product_types pt ON spt.product_type_id = pt.id
+		WHERE
+			p.is_sell = TRUE
+		AND
+			p. NAME LIKE CONCAT("%", #{productName}, "%")
+    </select>
+
+	<select id="selectProductAndFavorite" resultMap="ProductFavoriteResult">
+		SELECT
+			p.id AS product_id,
+			p.`name` AS product_name,
+			p.show_price,
+			p.sell_price,
+			p.icon_key AS img_url,
+			uf.user_id AS user_id
+		FROM
+			products AS p
+		LEFT JOIN sub_product_types AS spt ON p.sub_product_type_id = spt.id
+		LEFT JOIN (
+			SELECT
+				user_id,
+				product_id
+			FROM
+				user_favorites
+			WHERE
+				user_id = #{userId}
+		) AS uf ON uf.product_id = p.id
+		WHERE
+			spt.product_type_id = #{productTypeId}
+		AND
+			p.is_sell = TRUE
+		ORDER BY
+			p.hot_sort
+		DESC
+	</select>
+
+	<select id="selectProductAndFavoriteForHomePage" resultMap="ProductFavoriteResult">
+		SELECT
+			p.id AS product_id,
+			p.`name` AS product_name,
+			p.show_price,
+			p.sell_price,
+			p.icon_key AS img_url,
+			uf.user_id AS user_id
+		FROM
+			products AS p
+		LEFT JOIN (
+			SELECT
+				user_id,
+				product_id
+			FROM
+				user_favorites
+			WHERE
+				user_id = #{userId}
+		) AS uf ON uf.product_id = p.id
+		WHERE
+			p.is_sell = TRUE
+		AND
+			p.is_recommendation = TRUE
+		ORDER BY
+			p.hot_sort
+		DESC
+	</select>
+
+	<select id="selectFavoriteProductsByUseId" resultMap="ProductResult">
+		SELECT
+			p.id AS product_id,
+			p.`name` AS product_name,
+			p.sell_price AS sell_price,
+			p.icon_key AS img_url
+		FROM
+			user_favorites AS uf
+		JOIN products p ON uf.product_id = p.id
+		WHERE
+			uf.user_id = #{userId}
+	</select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" >
+        <title>搜索卡卷</title>
+        <link data-th-href="@{/plugins/css/bootstrap.min.css}" rel="stylesheet">
+        <link data-th-href="@{/plugins/css/sidebar-nav.min.css}" rel="stylesheet">
+        <link data-th-href="@{/plugins/css/theme.css}" rel="stylesheet">
+        <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link data-th-href="@{/plugins/css/blue.css}" rel="stylesheet">
+        <link data-th-href="@{/plugins/css/jquery.dataTables.min.css}" rel="stylesheet">
+        <link data-th-href="@{/plugins/css/animate.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div id="wrapper">
+        <div th:replace="partials/header :: header"></div>
+        <div th:replace="partials/sidebar :: sidebar"></div>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div th:replace="partials/nav :: nav"></div>
+                <div layout:fragment="content"></div>
+                <div th:replace="partials/footer :: footer"></div>
+            </div>
+        </div>
+        </div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/turbolinks/5.1.1/turbolinks.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script data-th-src="@{/plugins/js/sidebar-nav.min.js}"></script>
+        <script data-th-src="@{/plugins/js/waves.js}"></script>
+        <script data-th-src="@{/plugins/js/jquery.slimscroll.js}"></script>
+        <script data-th-src="@{/plugins/js/jquery.dataTables.min.js}"></script>
+        <script data-th-src="@{/plugins/js/custom.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daoyintech.daoyin_release.mappers.LineItemMapper">
+	
+	<resultMap id="lineItemResult" type="com.daoyintech.daoyin_release.response.result.LineItemResult">
+		<result property="lineItemId" column="line_item_id"/>
+		<result property="quantity" column="quantity"/>
+		<result property="inventory" column="inventory"/>
+		<result property="productId" column="product_id"/>
+		<result property="productName" column="product_name"/>
+		<result property="iconKey" column="icon_key"/>
+		<result property="sellPrice" column="sell_price"/>
+		<result property="colorId" column="color_id"/>
+		<result property="colorName" column="color_name"/>
+		<result property="formatId" column="format_id"/>
+		<result property="formatName" column="format_name"/>
+	</resultMap>
+
+    <select id="selectLineItemResultsByUserId" resultMap="lineItemResult">
+    	SELECT
+			lis.id AS line_item_id,
+			lis.quantity,
+			p.inventory,
+			p.id AS product_id,
+			p.`name` AS product_name,
+			p.icon_key,
+			pc.id AS color_id,
+			pc.`name` AS color_name,
+			pf.id AS format_id,
+			pf.`name` AS format_name,
+			pf.sell_price
+		FROM
+			line_items AS lis
+		LEFT JOIN products AS p ON lis.product_id = p.id
+		LEFT JOIN product_colors AS pc ON lis.color_id = pc.id
+		LEFT JOIN product_formats AS pf ON lis.format_id = pf.id
+		LEFT JOIN carts c ON lis.cart_id = c.id
+		LEFT JOIN users u ON c.user_id = u.id
+		WHERE
+			u.union_id = #{unionId}
+    </select>
+
+	<select id="selectLineItemResultByLineItemId" resultMap="lineItemResult">
+		SELECT
+			lis.id AS line_item_id,
+			lis.quantity,
+			p.inventory,
+			p.id AS product_id,
+			p.`name` AS product_name,
+			p.icon_key,
+			pc.id AS color_id,
+			pc.`name` AS color_name,
+			pf.id AS format_id,
+			pf.`name` AS format_name,
+			pf.sell_price
+		FROM
+			line_items AS lis
+		LEFT JOIN products AS p ON lis.product_id = p.id
+		LEFT JOIN product_colors AS pc ON lis.color_id = pc.id
+		LEFT JOIN product_formats AS pf ON lis.format_id = pf.id
+		WHERE
+			lis.id = #{lineItemId}
+	</select>
+</mapper>
