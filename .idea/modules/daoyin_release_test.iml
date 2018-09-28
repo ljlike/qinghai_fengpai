@@ -76,7 +76,7 @@
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpmime:4.5.6" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.5.6" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
-    <orderEntry type="library" name="Gradle: com.qiniu:qiniu-java-sdk:7.2.15" level="project" />
+    <orderEntry type="library" name="Gradle: com.qiniu:qiniu-java-sdk:7.2.17" level="project" />
     <orderEntry type="library" name="Gradle: com.alibaba:fastjson:1.2.28" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-core:5.2.17.Final" level="project" />
     <orderEntry type="library" name="Gradle: javax.transaction:javax.transaction-api:1.2" level="project" />
@@ -103,7 +103,6 @@
     <orderEntry type="library" name="Gradle: org.springframework:spring-messaging:5.0.8.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.9.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5" level="project" />
-    <orderEntry type="library" name="Gradle: com.qiniu:happy-dns-java:0.1.6" level="project" />
     <orderEntry type="library" name="Gradle: com.thoughtworks.xstream:xstream:1.4.9" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-lang3:3.7" level="project" />
     <orderEntry type="library" name="Gradle: org.jodd:jodd-http:3.7.1" level="project" />
