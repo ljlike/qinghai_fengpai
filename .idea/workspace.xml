@@ -641,7 +641,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -1247,7 +1247,7 @@
       <workItem from="1537877584666" duration="3189000" />
       <workItem from="1537924087027" duration="4931000" />
       <workItem from="1538010309507" duration="26993000" />
-      <workItem from="1538096690997" duration="8546000" />
+      <workItem from="1538096690997" duration="8759000" />
     </task>
     <task id="LOCAL-00001" summary="首页banner图">
       <created>1533811029477</created>
@@ -1523,7 +1523,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="607493000" />
+    <option name="totallyTimeSpent" value="607706000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1535,7 +1535,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29324546" sideWeight="0.5121029" order="6" side_tool="true" content_ui="tabs" />
