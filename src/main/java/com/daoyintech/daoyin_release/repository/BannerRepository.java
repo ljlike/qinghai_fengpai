@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface BannerRepository extends CrudRepository<Banner,Long> {
 
-    List<Banner> findAllByIsSellOrderByUpdatedAtDesc(Boolean isSell);
+    List<Banner> findAllByIsSell(Boolean isSell);
 
 }

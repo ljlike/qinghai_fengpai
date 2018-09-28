@@ -1,34 +1,24 @@
 package com.daoyintech.daoyin_release.controller.customer.user;
 
 import com.daoyintech.daoyin_release.entity.user.User;
-import com.daoyintech.daoyin_release.entity.user.UserProfit;
 import com.daoyintech.daoyin_release.entity.user.UserProfitApplet;
 import com.daoyintech.daoyin_release.enums.ResultEnum;
-import com.daoyintech.daoyin_release.enums.user.UserProfitType;
 import com.daoyintech.daoyin_release.repository.user.UserProfitRepository;
 import com.daoyintech.daoyin_release.repository.user.UserRepository;
 import com.daoyintech.daoyin_release.response.ResultResponse;
 import com.daoyintech.daoyin_release.response.member.*;
-import com.daoyintech.daoyin_release.service.UserProfitAppletService;
-import com.daoyintech.daoyin_release.service.UserProfitService;
-import com.daoyintech.daoyin_release.service.UserService;
-import com.daoyintech.daoyin_release.utils.DateUtils;
+import com.daoyintech.daoyin_release.service.user.UserProfitAppletService;
+import com.daoyintech.daoyin_release.service.user.UserProfitService;
+import com.daoyintech.daoyin_release.service.user.UserService;
 import com.daoyintech.daoyin_release.utils.ResultResponseUtil;
-import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yaml.snakeyaml.constructor.BaseConstructor;
 
-import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
-import java.net.URLDecoder;
 import java.util.List;
 
 /**

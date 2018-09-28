@@ -24,13 +24,13 @@ wx:
   hostUrl: https://fengpai.daoyintech.com
   applet: pages/index/main
   spbill_create_ip: 127.0.0.1
-  service_open_id: omUlo5O1RtmnT0llBESYqFPKQguk
-  service_template_id: kWjqHoFV2Tzi2Q4rXcSfwUgM73qnaqUk4rCi3tcMThk
+  service_open_id: omUlo5N78IGSRfkwVXQCC2_LN8GA
+  template_id: u3dRJBYXdqVNhDsosK5I3mRmh-3Uz0xrli6HiAqC3Bk
+  home_page: pages/index/main
 # 公众号
 official:
   appId: wxfb9e26b638aa9850
   appSecret: d347eb6995809a05de9b50938310374c
-
 integral:
   min_withdraw_standard: 1000
   min_withdraw_money: 10

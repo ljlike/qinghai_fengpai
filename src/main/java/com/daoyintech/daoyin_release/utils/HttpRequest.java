@@ -134,6 +134,6 @@ public class HttpRequest {
         wr.flush();
         wr.close();
         InputStream inputStream = httpURLConnection.getInputStream();
-        return IOUtils.toString(inputStream);
+        return IOUtils.toString(inputStream,"utf-8");
     }
 }

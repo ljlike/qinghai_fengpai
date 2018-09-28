@@ -3,7 +3,6 @@ package com.daoyintech.daoyin_release.utils.qiniu;
 import com.daoyintech.daoyin_release.configs.bargain.WaterMarkImageProperty;
 import com.daoyintech.daoyin_release.configs.bargain.WaterMarkTextProperty;
 import com.daoyintech.daoyin_release.entity.user.User;
-import com.daoyintech.daoyin_release.utils.DateUtils;
 import com.qiniu.common.QiniuException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 @Slf4j
 @Component

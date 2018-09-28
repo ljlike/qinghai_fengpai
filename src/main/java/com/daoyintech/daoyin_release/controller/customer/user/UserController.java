@@ -1,16 +1,14 @@
 package com.daoyintech.daoyin_release.controller.customer.user;
 
-import com.daoyintech.daoyin_release.entity.user.User;
 import com.daoyintech.daoyin_release.enums.ResultEnum;
 import com.daoyintech.daoyin_release.response.ResultResponse;
 import com.daoyintech.daoyin_release.response.result.ProductResult;
-import com.daoyintech.daoyin_release.service.ProductService;
-import com.daoyintech.daoyin_release.service.UserService;
-import com.daoyintech.daoyin_release.service.WxUserInfoService;
+import com.daoyintech.daoyin_release.service.product.ProductService;
+import com.daoyintech.daoyin_release.service.user.UserService;
+import com.daoyintech.daoyin_release.service.user.WxUserInfoService;
 import com.daoyintech.daoyin_release.utils.DateUtils;
 import com.daoyintech.daoyin_release.utils.ResultResponseUtil;
 import com.daoyintech.daoyin_release.utils.qiniu.ImageScalaTool;
-import com.qiniu.common.QiniuException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -56,7 +54,7 @@ public class UserController extends BaseUserController{
         if (StringUtils.isEmpty(unionId)){
             return ResultResponseUtil.error(ResultEnum.OBJECT_ERROR.getCode(),"该用户未关注公众号");
         }
-        setCurrentUser(unionId);
+//        setCurrentUser(unionId);
         return userService.firstInitUserInfo(unionId);
     }
 

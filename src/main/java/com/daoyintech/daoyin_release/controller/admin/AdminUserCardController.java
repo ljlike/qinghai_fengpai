@@ -3,7 +3,7 @@ package com.daoyintech.daoyin_release.controller.admin;
 import com.daoyintech.daoyin_release.entity.card.UserCard;
 import com.daoyintech.daoyin_release.repository.card.UserCardRepository;
 import com.daoyintech.daoyin_release.response.card.UserCardResponse;
-import com.daoyintech.daoyin_release.service.UserCardService;
+import com.daoyintech.daoyin_release.service.user.UserCardService;
 import com.daoyintech.daoyin_release.service.admin.AdminUserCardsService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -33,13 +33,10 @@ public class AdminUserCardController {
     @Autowired
     private UserCardService userCardService;
 
-
-
     @GetMapping
     public String search() {
         return "function/search";
     }
-
 
     @PostMapping
     public String query(@RequestParam("cardCode") String cardCode) {

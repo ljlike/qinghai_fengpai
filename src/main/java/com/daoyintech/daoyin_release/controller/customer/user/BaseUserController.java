@@ -37,7 +37,7 @@ public class BaseUserController {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String unionId = (String) request.getSession().getAttribute(SESSION_ID);
         //TODO 测试
-        //String unionId = "omOng0fST5rkspd3WF0CXLQ9Wxbs";
+        //String unionId = "o9C7s5xw4uV1XrGvWYncH_10oOF8";
         //log.info("{}:获取用户缓存唯一标识:unionId={}", DateUtils.getStringDate(),unionId);
         return unionId;
     }

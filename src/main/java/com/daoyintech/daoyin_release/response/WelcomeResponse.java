@@ -16,6 +16,8 @@ public class WelcomeResponse {
 
     private List<BannerResponse> banners;
 
+    private List<BannerResponse> activityBanners;
+
     //private List<ProductResponse> products;
 
     private List<ProductFavoriteResponse> products;
@@ -28,10 +30,11 @@ public class WelcomeResponse {
         return response;
     }*/
 
-    public static WelcomeResponse welcomeResponseBuild(List<ProductType> productTypes, List<Banner> banners, List<ProductFavoriteResult> products) {
+    public static WelcomeResponse welcomeResponseBuild(List<ProductType> productTypes, List<Banner> productsBanners, List<Banner> activityBanners, List<ProductFavoriteResult> products) {
         WelcomeResponse response = new WelcomeResponse();
         response.setProductTypes(ProductTypeResponse.productTypeResponseBuild(productTypes));
-        response.setBanners(BannerResponse.bannerResponseBuild(banners));
+        response.setBanners(BannerResponse.bannerResponseBuild(productsBanners));
+        response.setActivityBanners(BannerResponse.bannerResponseBuild(activityBanners));
         response.setProducts(ProductFavoriteResponse.productFavoriteResponsesBuild(products));
         return response;
     }

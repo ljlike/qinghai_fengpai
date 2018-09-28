@@ -2,9 +2,8 @@ package com.daoyintech.daoyin_release.messageQueue.receiver;
 
 import com.daoyintech.daoyin_release.entity.order.Order;
 import com.daoyintech.daoyin_release.entity.order.bargain.BargainOrder;
-import com.daoyintech.daoyin_release.enums.order.OrderStatus;
-import com.daoyintech.daoyin_release.service.BargainOrderService;
-import com.daoyintech.daoyin_release.service.OrderService;
+import com.daoyintech.daoyin_release.service.order.bargain.BargainOrderService;
+import com.daoyintech.daoyin_release.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

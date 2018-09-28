@@ -11,11 +11,17 @@
 <div class="navbar-default sidebar" role="navigation" th:fragment="sidebar">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <ul class="nav" id="side-menu">
-            <li class="nav-small-cap m-t-10">--- 用户卡卷管理</li>
+            <li style="text-align: center" class="nav-small-cap m-t-10">蜂拍照相馆</li>
             <li>
                 <a data-th-href="@{/admin}" class="waves-effect active">
                 <i class="linea-icon linea-basic fa-fw" data-icon="v"></i>
                 <span class="hide-menu"> 卡卷查询 </span>
+                </a>
+            </li>
+            <li>
+                <a data-th-href="@{/reservation/show}" class="waves-effect active">
+                    <i class="linea-icon linea-basic fa-fw" data-icon="v"></i>
+                    <span class="hide-menu"> 预约管理 </span>
                 </a>
             </li>
         </ul>

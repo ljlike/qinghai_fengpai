@@ -1,6 +1,8 @@
 package com.daoyintech.daoyin_release;
 
+import com.daoyintech.daoyin_release.response.DefinitionResponse;
 import com.daoyintech.daoyin_release.response.reservation.ReservationResponse;
+import com.daoyintech.daoyin_release.utils.helper.ReservationResponseHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,56 +10,46 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.sound.midi.SoundbankResource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DaoyinReleaseApplicationTests {
 
     @Autowired
-    private RedisTemplate<Object,Object> redis;
+    private RedisTemplate<Object, Object> redis;
 
     @Test
     public void contextLoads() {
-        ReservationResponse response = new ReservationResponse();
-        response.setIsCameramanOut(false);
-        response.setMaxReservationNumber(10);
-        redis.opsForValue().set("test",response);
-
-        ReservationResponse test = (ReservationResponse) redis.opsForValue().get("test");
-        System.out.println(test);
-        System.out.println("!!!!!!!!!!!!");
+        /*setRedis("2018-10-10");*/
+        search();
     }
 
-   /* @Autowired
-    private WxMaService wxMaService;
+    private void setRedis(String strDate) {
 
-    @Autowired
-    private UserService userService;
-
-    @Value("${wx.service_open_id}")
-    private String serviceOpenId;
-
-    @Test
-    public void contextLoads() {
-        String unionId = getCurrentUnionId();
-        User user = userService.findByUnionId(unionId);
-        WxMaTemplateMessage wxMaTemplateMessage = new WxMaTemplateMessage();
-        wxMaTemplateMessage.setToUser(serviceOpenId);
-        wxMaTemplateMessage.setTemplateId("kWjqHoFV2Tzi2Q4rXcSfwUgM73qnaqUk4rCi3tcMThk");
-        wxMaTemplateMessage.setPage("pages/index/mian"); //跳转页面 非必填
-        wxMaTemplateMessage.setFormId("");
-        List<WxMaTemplateMessage.Data> data = new ArrayList<>();
-        data.add(new WxMaTemplateMessage.Data("预约客户",user.getNickName()));
-        data.add(new WxMaTemplateMessage.Data("手机号","前端用户输入数据"));
-        data.add(new WxMaTemplateMessage.Data("预约时间","前端用户输入数据"));
-        wxMaTemplateMessage.setData(data);
+        ReservationResponse response = new ReservationResponse();
+        response.setMaxReservationNumber(10);
+        response.setIsCameramanOut(false);
         try {
-            wxMaService.getMsgService().sendTemplateMsg(wxMaTemplateMessage);
-        } catch (WxErrorException e) {
+            response.setAppointmentDate(new SimpleDateFormat("yyyy-MM-dd").parse(strDate));
+            ReservationResponseHelper.setReservationResponse(redis, response);
+            System.out.println("success");
+        } catch (ParseException e) {
             e.printStackTrace();
+            System.out.println("filed");
         }
-    }*/
 
+    }
 
+    private void search(){
+        List<ReservationResponse> responses = ReservationResponseHelper.selectAllReservationResponse(redis);
+        for (ReservationResponse response : responses) {
+            System.out.println(response);
+        }
+    }
 
 }

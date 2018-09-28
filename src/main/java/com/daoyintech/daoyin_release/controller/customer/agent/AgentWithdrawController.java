@@ -2,14 +2,12 @@ package com.daoyintech.daoyin_release.controller.customer.agent;
 
 import com.daoyintech.daoyin_release.controller.customer.user.BaseUserController;
 import com.daoyintech.daoyin_release.entity.agent.UserWithdraw;
-import com.daoyintech.daoyin_release.entity.bank.Bank;
 import com.daoyintech.daoyin_release.entity.user.User;
 import com.daoyintech.daoyin_release.enums.ResultEnum;
 import com.daoyintech.daoyin_release.enums.agent.WithdrawStatus;
-import com.daoyintech.daoyin_release.enums.setting.OverallSettingStatus;
 import com.daoyintech.daoyin_release.response.ResultResponse;
-import com.daoyintech.daoyin_release.response.bank.BankCardInfoRequest;
 import com.daoyintech.daoyin_release.service.*;
+import com.daoyintech.daoyin_release.service.user.*;
 import com.daoyintech.daoyin_release.utils.ResultResponseUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

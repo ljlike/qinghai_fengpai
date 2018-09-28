@@ -1,12 +1,11 @@
 package com.daoyintech.daoyin_release.entity.reservation;
 
 import com.daoyintech.daoyin_release.entity.common.AbstractEntity;
+import com.daoyintech.daoyin_release.enums.reservation.ReservationType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -22,12 +21,19 @@ public class Reservation extends AbstractEntity{
     private Long userId;
 
     @Column
+    private String userName;
+
+    @Column
     private String phone;
 
     @Column
     private Date appointmentDate; //预约时间
 
     @Column
-    private String userName;
+    @Enumerated(EnumType.STRING)
+    private ReservationType reservationType;
+
+    @Column
+    private Boolean dispose = false;
 
 }

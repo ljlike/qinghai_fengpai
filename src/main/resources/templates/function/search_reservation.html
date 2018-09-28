@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layout/application}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+   <title>预约管理</title>
+    <link rel="icon" type="image/x-icon" href="/daoyin_release/image/shifangba.png">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="white-box">
+                    <h3 class="box-title">预约信息查询</h3>
+                    <div>
+                        <div class="slimscrollright">
+                            <form data-th-action="@{/reservation/{type}/search(type='拍照')}" method="get" class="form-horizontal">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">预约拍照查询</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="slimscrollright">
+                            <form data-th-action="@{/reservation/{type}/search(type='选片')}" method="get" class="form-horizontal">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">预约选片查询</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <h3 class="box-title">预约拍照条件设定及查询</h3>
+                    <div class="slimscrollright">
+                        <form data-th-action="@{/reservation/search}" method="get" class="form-horizontal">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">查询自定义预约拍照条件</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

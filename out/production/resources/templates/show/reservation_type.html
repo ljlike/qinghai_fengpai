@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layout/application}"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>预约条件查询结果</title>
+    <link rel="icon" type="image/x-icon" href="/daoyin_release/image/shifangba.png">
+</head>
+<body>
+<div class="container">
+    <div layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="white-box">
+                    <div class="slimscrollright">
+                        <table class="table table-striped dataTable" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>预约人</th>
+                                <th>联系方式</th>
+                                <th>预约时间</th>
+                                <th>预约状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="reservation : ${reservations}">
+                                <td data-th-text="${reservation.userName}"></td>
+                                <td data-th-text="${reservation.phone}"></td>
+                                <td data-th-text="${#dates.format(reservation.appointmentDate, 'yyyy-MM-dd' )}"></td>
+                                <td data-th-text="${reservation.dispose == false ? '待处理' : '已处理'}"></td>
+                                <td>
+                                    <form data-th-action="@{/reservation/{id}/dispose(id=${reservation.id})}" method="get" class="form-horizontal">
+                                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" >处理</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

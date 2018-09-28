@@ -1,6 +1,6 @@
 package com.daoyintech.daoyin_release.controller.customer.order;
 
-import com.daoyintech.daoyin_release.service.OrderNoticeService;
+import com.daoyintech.daoyin_release.service.order.OrderNoticeService;
 import com.daoyintech.daoyin_release.utils.DateUtils;
 import com.daoyintech.daoyin_release.utils.pay.NotifyUtils;
 import lombok.extern.slf4j.Slf4j;

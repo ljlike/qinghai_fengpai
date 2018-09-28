@@ -1,12 +1,14 @@
 package com.daoyintech.daoyin_release.controller.customer.user;
 
 import com.daoyintech.daoyin_release.entity.order.Order;
-import com.daoyintech.daoyin_release.entity.order.bargain.BargainJoiner;
-import com.daoyintech.daoyin_release.entity.order.bargain.BargainOrder;
-import com.daoyintech.daoyin_release.entity.user.User;
 import com.daoyintech.daoyin_release.repository.order.OrderRepository;
 import com.daoyintech.daoyin_release.repository.user.UserRepository;
 import com.daoyintech.daoyin_release.service.*;
+import com.daoyintech.daoyin_release.service.order.OrderService;
+import com.daoyintech.daoyin_release.service.order.bargain.BargainJoinerHelpService;
+import com.daoyintech.daoyin_release.service.order.bargain.BargainOrderService;
+import com.daoyintech.daoyin_release.service.user.UserIntegralService;
+import com.daoyintech.daoyin_release.service.user.UserService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

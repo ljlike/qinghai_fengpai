@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layout/application}"
+      xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>预约条件查询结果</title>
+    <link rel="icon" type="image/x-icon" href="/daoyin_release/image/shifangba.png">
+</head>
+<body>
+<div class="container">
+    <div layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="white-box">
+                    <div style="margin-bottom: 15px">
+                        <form data-th-action="@{/reservation/restrain}" method="get" class="form-horizontal">
+                            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">添加预约条件</button>
+                        </form>
+                    </div>
+                    <div class="slimscrollright">
+                        <table class="table table-striped dataTable" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>摄影师是否外出</th>
+                                <th>当天最大预约人数</th>
+                                <th>预约时间</th>
+                                <th style="width: 120px">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="reservation : ${reservations}">
+                                <td data-th-text="${reservation.isCameramanOut == false ? '否' : '是'}"></td>
+                                <td data-th-text="${reservation.maxReservationNumber}"></td>
+                                <td data-th-text="${#dates.format(reservation.appointmentDate, 'yyyy-MM-dd' )}"></td>
+                                <td style="display: flex ">
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" >修改</button>
+                                    <form data-th-action="@{/reservation/{appointmentDate}/delete(appointmentDate=${#dates.format(reservation.appointmentDate, 'yyyy-MM-dd' )})}" method="get" class="form-horizontal">
+                                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10" >删除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
