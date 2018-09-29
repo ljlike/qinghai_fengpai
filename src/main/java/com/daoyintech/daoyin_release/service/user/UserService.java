@@ -15,7 +15,6 @@ public interface UserService{
 
     ResultResponse firstInitUserInfo(String unionId);
 
-
     ResultResponse againInitUserInfo(HashMap<String, Object> userInfoMap);
 
     User findByUnionId(String unionId);

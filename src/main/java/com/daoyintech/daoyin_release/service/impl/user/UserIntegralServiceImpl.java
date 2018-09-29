@@ -149,12 +149,6 @@ public class UserIntegralServiceImpl implements UserIntegralService {
                 //新规则积分抽奖
                 Integer userInteger = drawService.drawJackpotIntegral();
 
-                //BigDecimal defaltMoney = order.getIsMyselfPick() ? order.getPayMoney() : order.getPayMoney().subtract(freightPrice);
-                //规则类型
-                //Integer integralType = randomDrawIntegralType(bargainOrder.getOrderNo());
-                //抽取的积分
-                //Integer userInteger = randomDrawPrice(integralType, defaltMoney,bargainOrder.getOrderNo());
-
                 log.info("{}:用户抽取的积分:{}:{}",DateUtils.getStringDate(),joinerUser.getNickName(),userInteger);
                 //每个参与者获得积分
                 userIntegralService.updateUserPoint(new BigDecimal(userInteger),joinerUser);
@@ -162,16 +156,8 @@ public class UserIntegralServiceImpl implements UserIntegralService {
                 //积分卷
                 if (BargainHelpType.getType(3).equals(joiner.getType())){
                     User orderUser = userRepository.getOne(order.getUserId());
-                    //新规则积分抽奖
-                    Integer integer = drawService.drawJackpotIntegral();
 
-                    //BigDecimal money = order.getIsMyselfPick() ? order.getPayMoney() : order.getPayMoney().subtract(freightPrice);
-                    //规则类型
-                    //Integer type = randomDrawIntegralType(bargainOrder.getOrderNo());
-                    //抽取的积分
-                    //Integer integer = randomDrawPrice(type, money,bargainOrder.getOrderNo());
-                    //随机用户积分
-                    //Integer integral = randomDrawIntegral(integer);
+                    Integer integer = drawService.drawJackpotIntegral();
 
                     userIntegralService.updateUserPoint(new BigDecimal(integer),orderUser);
                     userIntegralDetailService.buildUserIntegralDetail(order, orderUser,new BigDecimal(integer), UserIntegralFromType.积分卷);

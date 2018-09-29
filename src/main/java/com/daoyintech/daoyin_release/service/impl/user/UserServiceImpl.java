@@ -13,6 +13,7 @@ import com.daoyintech.daoyin_release.repository.user.UserRepository;
 import com.daoyintech.daoyin_release.response.ResultResponse;
 import com.daoyintech.daoyin_release.response.bank.BankCardInfoRequest;
 import com.daoyintech.daoyin_release.response.user.UserResponse;
+import com.daoyintech.daoyin_release.service.order.cart.CartService;
 import com.daoyintech.daoyin_release.service.user.AgentService;
 import com.daoyintech.daoyin_release.service.user.UserService;
 import com.daoyintech.daoyin_release.utils.DateUtils;
@@ -27,7 +28,6 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
@@ -60,6 +60,9 @@ public class UserServiceImpl extends BaseUserController implements UserService{
     @Autowired
     private AgentService agentService;
 
+    @Autowired
+    private CartService cartService;
+
     @Value("${pay.freight_price}")
     private BigDecimal freight_price;
 
@@ -71,9 +74,9 @@ public class UserServiceImpl extends BaseUserController implements UserService{
         UserIntegral userIntegral = null;
         User user = userRepository.findByUnionId(unionId);
         if (StringUtils.isEmpty(user)){
-            //新
             user = initUserInfo(unionId);
             userIntegral = createUserIntegral(user);
+            cartService.createCartIfNotExist(user.getId());
         }else{
             userIntegral = userIntegralRepository.findByUserId(user.getId());
         }
@@ -85,7 +88,6 @@ public class UserServiceImpl extends BaseUserController implements UserService{
         return ResultResponseUtil.success(userResponse);
     }
 
-    @Transactional
     @Override
     public ResultResponse againInitUserInfo(HashMap<String, Object> userInfoMap){
         UserIntegral userIntegral = null;
@@ -94,8 +96,8 @@ public class UserServiceImpl extends BaseUserController implements UserService{
         if (StringUtils.isEmpty(user)){
             user = initMapToUserInfo(userInfoMap);
             userIntegral = createUserIntegral(user);
+            cartService.createCartIfNotExist(user.getId());
         }else{
-            //更新用户数据
             user = updateUserInfo(user,userInfoMap);
             userIntegral = userIntegralRepository.findByUserId(user.getId());
         }
@@ -110,13 +112,12 @@ public class UserServiceImpl extends BaseUserController implements UserService{
         String unionId = String.valueOf(userInfoMap.get("unionId"));
         user.setUnionId(unionId);
         user.setAppletOpenId(String.valueOf(userInfoMap.get("openId")));
-        if (StringUtil.isNotEmpty(createUserQrCode(unionId))){
+        if (StringUtil.isNotEmpty(user.getAppletQrCode())&&StringUtil.isEmpty(createUserQrCode(unionId))){
             user.setAppletQrCode(createUserQrCode(unionId));
         }
         return userRepository.save(user);
     }
 
-    @Transactional
     @Override
     public User findByUnionId(String unionId) {
         return userRepository.findByUnionId(unionId);
@@ -124,7 +125,7 @@ public class UserServiceImpl extends BaseUserController implements UserService{
 
     @Override
     public User findById(Long userId) {
-        return userRepository.getOne(userId);
+        return userRepository.findById(userId).orElse(null);
     }
 
     public User findIsAgent(Long userId) {
@@ -166,9 +167,7 @@ public class UserServiceImpl extends BaseUserController implements UserService{
     private User initMapToUserInfo(HashMap<String, Object> userInfoMap){
         User user = new User();
         user.setIsSubscribe(false);
-        //String nickName = URLEncoder.encode(String.valueOf(userInfoMap.get("nickName")), "utf-8");
         user.setNickName(String.valueOf(userInfoMap.get("nickName")));
-
         user.setAvatar(String.valueOf(userInfoMap.get("avatarUrl")));
         String unionId = String.valueOf(userInfoMap.get("unionId"));
         user.setUnionId(unionId);
@@ -177,7 +176,7 @@ public class UserServiceImpl extends BaseUserController implements UserService{
         return userRepository.save(user);
     }
 
-    public String createUserQrCode(String unionId){
+    private String createUserQrCode(String unionId){
         File qrcode = null;
         try {
             qrcode = wxMaService.getQrcodeService().createQrcode(applet+"?unionId=" + unionId);
@@ -210,7 +209,6 @@ public class UserServiceImpl extends BaseUserController implements UserService{
                     buf = new StringBuilder(source.length());
                 }
                 buf.append(codePoint);
-            } else {
             }
         }
         if (buf == null) {

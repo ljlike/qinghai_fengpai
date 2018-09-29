@@ -54,7 +54,6 @@ public class UserController extends BaseUserController{
         if (StringUtils.isEmpty(unionId)){
             return ResultResponseUtil.error(ResultEnum.OBJECT_ERROR.getCode(),"该用户未关注公众号");
         }
-//        setCurrentUser(unionId);
         return userService.firstInitUserInfo(unionId);
     }
 

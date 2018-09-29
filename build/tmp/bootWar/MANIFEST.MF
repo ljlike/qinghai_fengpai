@@ -1,2 +1,4 @@
 Manifest-Version: 1.0
+Start-Class: com.daoyintech.daoyin_release.DaoyinReleaseApplication
+Main-Class: org.springframework.boot.loader.WarLauncher
 

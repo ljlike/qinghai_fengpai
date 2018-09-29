@@ -20,7 +20,7 @@
     <facet type="web" name="Web Gradle : daoyin_release-0.0.1-SNAPSHOT.war">
       <configuration>
         <webroots>
-          <root url="file://E:\qinhai_fengpai\qinghai_fengpai\src\main\webapp" relative="/" />
+          <root url="file://E:\qinghai_fengpai\src\main\webapp" relative="/" />
         </webroots>
       </configuration>
     </facet>

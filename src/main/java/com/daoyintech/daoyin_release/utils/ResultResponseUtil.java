@@ -5,6 +5,7 @@ import com.daoyintech.daoyin_release.response.ResultResponse;
 
 public class ResultResponseUtil {
 
+    @SuppressWarnings("unchecked")
     public static ResultResponse success(Object object) {
         ResultResponse resultResponse = new ResultResponse();
         resultResponse.setData(object);
@@ -24,6 +25,7 @@ public class ResultResponseUtil {
         return resultResponse;
     }
 
+    @SuppressWarnings("unchecked")
     public static ResultResponse error(Integer code,Object object) {
         ResultResponse resultResponse = new ResultResponse();
         resultResponse.setCode(code);

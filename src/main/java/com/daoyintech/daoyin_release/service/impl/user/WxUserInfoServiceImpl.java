@@ -2,7 +2,6 @@ package com.daoyintech.daoyin_release.service.impl.user;
 
 import com.daoyintech.daoyin_release.enums.ResultEnum;
 import com.daoyintech.daoyin_release.exception.DaoyinException;
-import com.daoyintech.daoyin_release.repository.user.UserRepository;
 import com.daoyintech.daoyin_release.service.user.WxUserInfoService;
 import com.daoyintech.daoyin_release.utils.DateUtils;
 import com.daoyintech.daoyin_release.utils.HttpRequest;
@@ -15,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import java.util.HashMap;
+
 
 /**
  * @author pei on 2018/08/09
@@ -30,9 +29,6 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Value("${wx.appId}")
     private String appId;
 
@@ -40,7 +36,8 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
     private String secret;
 
     @Override
-    public HashMap<String,Object>  decryptUserInfo(String code, String encryptedData, String iv) throws Exception {
+    @SuppressWarnings("unchecked")
+    public HashMap<String,Object> decryptUserInfo(String code, String encryptedData, String iv) throws Exception {
         String info = sendPostGetInfo(code);
         HashMap<String,Object> mapInfo = objectMapper.readValue(info, HashMap.class);
         String sessionKey = (String) mapInfo.get("session_key");
@@ -50,12 +47,12 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
         if(resultByte != null && resultByte.length > 0){
             userInfo = new String(WxPKCS7Encoder.decode(resultByte),"UTF-8");
         }
-        HashMap<String,Object> resultMap = objectMapper.readValue(userInfo, HashMap.class);
-        return resultMap;
+        return objectMapper.readValue(userInfo, HashMap.class);
     }
 
 
     @Override
+    @SuppressWarnings("unchecked")
     public String sendPostGetUnionId(String code) throws Exception {
         String info = sendPostGetInfo(code);
         log.info("{}:发送请求获取信息:info = {}",DateUtils.getStringDate(),info);
@@ -69,7 +66,6 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
         }
         return unionId;
     }
-
 
     private String sendPostGetInfo(String code){
         String param = "appid=" + appId + "&secret=" + secret +"&js_code="+code+"&grant_type=authorization_code";

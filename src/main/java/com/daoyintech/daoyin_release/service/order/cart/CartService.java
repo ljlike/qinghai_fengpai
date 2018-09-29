@@ -9,12 +9,11 @@ public interface CartService {
 
     List<LineItemResult> getLineItemResultsByUserId(String unionId);
 
-    Integer countByCart(String unionId);
-
     LineItemResult saveOrUpdateLineItemByLineItemId(LineItem receivedItem);
 
     void delete(Long lineItemId);
 
-    Long getCurrentCartIdByUnionId(String unionId);
+    void createCartIfNotExist(Long userId);
 
+    Long getCurrentCartIdByUnionId(String unionId);
 }

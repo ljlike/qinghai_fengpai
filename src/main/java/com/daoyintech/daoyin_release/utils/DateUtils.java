@@ -12,6 +12,18 @@ import java.util.Date;
  */
 public class DateUtils {
 
+
+    /**
+     * 获取固定格式的时间作为redis的key 每天一个key
+     */
+     public static String getRedisKeyDate(Date currentTime){
+         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+         String dateString = formatter.format(currentTime);
+         return dateString;
+     }
+
+
+
     /**
      * 获取现在时间
      *
@@ -127,6 +139,19 @@ public class DateUtils {
     }
 
 
+    public static Long dateStringShortTypeToLong(String dateType){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = df.parse(dateType);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        long timestamp = cal.getTimeInMillis();
+        return timestamp;
+    }
 
     public static Long StringTLong(String StringDate){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");

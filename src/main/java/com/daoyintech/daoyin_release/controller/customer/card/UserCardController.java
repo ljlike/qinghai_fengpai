@@ -36,29 +36,9 @@ public class UserCardController extends BaseUserController{
             return ResultResponseUtil.error(ResultEnum.OBJECT_ERROR.getCode(),"获取用户unionId失败");
         }
         User user = userService.findByUnionId(unionId);
-        //List<UserCardResponse> cardList = userCardService.findUsercards(user);
-        List<UserCardResponse> cardList = userCardService.findNewUsercards(user);
+        List<UserCardResponse> cardList = userCardService.findNewUserCards(user);
         return ResultResponseUtil.success(cardList);
     }
-
-
-    /**
-     * 唤起h5领取卡包  参数
-     * */
-/*
-    @ApiOperation("唤起h5领取卡包  参数")
-    @GetMapping("/own_card/{id}")
-    public ResultResponse getH5Param(@PathVariable("id") Long id) throws WxErrorException {
-        WxCardApiSignature signature = userCardService.getH5Param(id);
-        return ResultResponseUtil.success(signature);
-    }
-*/
-
-
-
-
-
-
 
 }
 

@@ -30,11 +30,6 @@ public class CartServiceImpl implements CartService {
     private UserService userService;
 
     @Override
-    public Integer countByCart(String unionId) {
-        return lineItemRepository.countByCartId(getCurrentCartIdByUnionId(unionId));
-    }
-
-    @Override
     public List<LineItemResult> getLineItemResultsByUserId(String unionId) {
         return LineItemResult.lineItemResultsBuild(lineItemMapper.selectLineItemResultsByUserId(unionId));
     }
@@ -61,6 +56,16 @@ public class CartServiceImpl implements CartService {
     @Override
     public void delete(Long lineItemId) {
         lineItemRepository.deleteById(lineItemId);
+    }
+
+    @Override
+    public void createCartIfNotExist(Long userId) {
+        Cart cart = cartRepository.findByUserId(userId);
+        if (cart == null) {
+            cart = new Cart();
+            cart.setUserId(userId);
+            cartRepository.save(cart);
+        }
     }
 
     @Override

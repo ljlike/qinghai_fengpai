@@ -70,6 +70,7 @@
           <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpmime:4.5.6" />
           <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.5.6" />
           <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Gradle: com.qiniu:qiniu-java-sdk:7.2.17" />
           <element id="library" level="project" name="Gradle: com.alibaba:fastjson:1.2.28" />
           <element id="library" level="project" name="Gradle: org.hibernate:hibernate-core:5.2.17.Final" />
           <element id="library" level="project" name="Gradle: javax.transaction:javax.transaction-api:1.2" />
@@ -153,7 +154,6 @@
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.6" />
           <element id="library" level="project" name="Gradle: net.bytebuddy:byte-buddy:1.7.11" />
           <element id="library" level="project" name="Gradle: org.apache.logging.log4j:log4j-api:2.10.0" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.qiniu/qiniu-java-sdk/7.2.17/27c8dc38670fc60f36a07e922a16277830f30c31/qiniu-java-sdk-7.2.17.jar" />
         </element>
       </element>
     </root>

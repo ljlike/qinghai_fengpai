@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" layout:decorate="~{layout/application}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+   <title>初始化卡券</title>
+    <link rel="icon" type="image/x-icon" href="/daoyin_release/image/shifangba.png">
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="white-box">
+                    <h3 class="box-title">初始卡券</h3>
+                    <div class="slimscrollright">
+                        <form data-th-action="@{/wxCard/add}" method="post" class="form-horizontal">
+                            <div class="form-group col-md-12">
+                                <div style="float: left">
+                                    <label class="col-md-12">新增</label>
+                                    <div class="col-md-12" style="margin-bottom: 10px">
+                                        <input type="text" name="title" placeholder="请输入卡券活动名称" class="form-control">
+                                    </div>
+                                </div>
+                                <div style="float:left">
+                                    <label class="col-md-12">请选择活动日期</label>
+                                    <div class="col-md-12" style="margin-bottom: 10px">
+                                        <input type="date" name="date" class="form-control">
+                                    </div>
+                                </div>
+                                <div style="float:left">
+                                    <label class="col-md-12">请选择卡券类型</label>
+                                    <div class="col-md-12">
+                                        <select name="type" class="form-control">
+                                            <option value="1" selected>卡券类型1</option>
+                                            <option value="2">卡券类型2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="float:right">
+                                    <label class="col-md-12">操作</label>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">新增</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <h3 class="box-title">查询所有活动卡券</h3>
+                    <div class="slimscrollright">
+                        <form data-th-action="@{/wxCard/list}" method="get" class="form-horizontal">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">查询</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,12 +1,10 @@
 package com.daoyintech.daoyin_release.controller.customer.user;
 
-import com.daoyintech.daoyin_release.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -29,16 +27,13 @@ public class BaseUserController {
         String attribute = (String) request.getSession().getAttribute(SESSION_ID);
         if (StringUtils.isEmpty(attribute)){
             request.getSession().setAttribute(SESSION_ID,unionId);
-//            log.info("{}:用户缓存唯一标识:unionId={}", DateUtils.getStringDate(),request.getSession().getAttribute(SESSION_ID));
         }
     }
 
     public String getCurrentUnionId(){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String unionId = (String) request.getSession().getAttribute(SESSION_ID);
-        //TODO 测试
         //String unionId = "o9C7s5xw4uV1XrGvWYncH_10oOF8";
-        //log.info("{}:获取用户缓存唯一标识:unionId={}", DateUtils.getStringDate(),unionId);
         return unionId;
     }
 

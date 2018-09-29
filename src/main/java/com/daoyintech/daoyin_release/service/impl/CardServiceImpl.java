@@ -4,9 +4,9 @@ import com.daoyintech.daoyin_release.entity.order.Order;
 import com.daoyintech.daoyin_release.entity.order.bargain.BargainJoiner;
 import com.daoyintech.daoyin_release.entity.order.bargain.BargainOrder;
 import com.daoyintech.daoyin_release.entity.user.User;
-import com.daoyintech.daoyin_release.enums.bargain.BargainHelpType;
+import com.daoyintech.daoyin_release.enums.card.CardType;
 import com.daoyintech.daoyin_release.repository.order.BargainJoinerRepository;
-import com.daoyintech.daoyin_release.service.*;
+import com.daoyintech.daoyin_release.service.CardService;
 import com.daoyintech.daoyin_release.service.order.bargain.BargainOrderService;
 import com.daoyintech.daoyin_release.service.user.UserCardService;
 import com.daoyintech.daoyin_release.service.user.UserService;
@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class CardServiceImpl implements CardService{
+public class CardServiceImpl implements CardService {
 
     @Autowired
     private UserService userService;
@@ -65,24 +65,20 @@ public class CardServiceImpl implements CardService{
         List<BargainJoiner> bargainJoiners = bargainJoinerRepository.findByBargainOrderId(bargainOrder.getId());
         User user = userService.findById(order.getUserId());
         for (BargainJoiner bargainJoiner: bargainJoiners) {
-            if (bargainJoiner.getType().ordinal() == BargainHelpType.法务券.ordinal()){
-                userCardService.createNewUserCard(user,2);
-                //让幸福和性福有技可施
+            int joinerType = bargainJoiner.getType().ordinal();
+            Integer type = CardType.getType(joinerType);
+            if (type.equals(joinerType)){
+                continue;
             }
-            if (bargainJoiner.getType().ordinal() == BargainHelpType.心理券.ordinal()){
-                userCardService.createNewUserCard(user,1);
-                //解惑人生重塑机缘
-            }
-            if (bargainJoiner.getType().ordinal() == BargainHelpType.线下活动卷.ordinal()){
-                userCardService.createNewUserCard(user,2);
+            //创建卡券
+            userCardService.createNewUserCard(user,type);
             }
         }
-    }
-
-
-
-
 
 
 
 }
+
+
+
+

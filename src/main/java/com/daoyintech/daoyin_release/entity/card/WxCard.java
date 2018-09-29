@@ -21,11 +21,13 @@ public class WxCard extends AbstractEntity {
     private String title;
 
     @Column
-    private String cardId;
+    private Long expire;
 
     @Column
-    private Long fixedTime;
+    private int type;
 
+    @Column
+    private int status;
 
 }
 
