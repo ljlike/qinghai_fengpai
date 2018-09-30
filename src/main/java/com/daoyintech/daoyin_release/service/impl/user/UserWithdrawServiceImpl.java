@@ -59,8 +59,6 @@ public class UserWithdrawServiceImpl implements UserWithdrawService {
     @Value("${wx.spbill_create_ip}")
     private String spbillCreateIp;
 
-
-
     @Autowired
     private AgentService agentService;
 

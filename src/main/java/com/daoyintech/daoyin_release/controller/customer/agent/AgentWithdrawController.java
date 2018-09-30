@@ -30,11 +30,6 @@ public class AgentWithdrawController extends BaseUserController{
     private UserWithdrawService userWithdrawService;
 
     @Autowired
-    private BankService bankService;
-    @Autowired
-    private OverallSettingService overallSettingService;
-
-    @Autowired
     private UserIntegralService userIntegralService;
 
     @Autowired
@@ -108,32 +103,6 @@ public class AgentWithdrawController extends BaseUserController{
         userWithdrawApplyService.createWithdraw(user, point);
         return ResultResponseUtil.success("您的申请已提交,请耐心等待");
     }
-
-
-
-
-    /*    @ApiOperation("查询所有银行")
-    @GetMapping("/bank")
-    public ResultResponse findAllBank(){
-        List<Bank> banks = bankService.findAll();
-        return ResultResponseUtil.success(banks);
-    }*/
-
-
-/*
-    @ApiOperation("修改提现信息")
-    @PostMapping("/bankCardInfo")
-    public ResultResponse updateOrCreate(@RequestBody BankCardInfoRequest bankCardInfo){
-        if (StringUtils.isEmpty(bankCardInfo.getBankCardNum()) || StringUtils.isEmpty(bankCardInfo.getHoldCardName()) || StringUtils.isEmpty(bankCardInfo.getOpenBank())){
-            return ResultResponseUtil.error(ResultEnum.PARAM_ERROR.getCode(),"请正确填写银行卡信息!");
-        }
-        User user = userService.findByUnionId(getCurrentUnionId());
-        userService.UpdateOrCreateBankCardInfo(bankCardInfo,user);
-        return ResultResponseUtil.success("绑定银行卡信息成功！");
-    }
-*/
-
-
 
 }
 

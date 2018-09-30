@@ -15,6 +15,7 @@ import com.daoyintech.daoyin_release.enums.bargain.BargainOrderStatus;
 import com.daoyintech.daoyin_release.enums.order.OrderType;
 import com.daoyintech.daoyin_release.enums.user.UserIntegralFromType;
 import com.daoyintech.daoyin_release.repository.order.BargainJoinerRepository;
+import com.daoyintech.daoyin_release.repository.order.BargainOrderRepository;
 import com.daoyintech.daoyin_release.repository.product.ProductRepository;
 import com.daoyintech.daoyin_release.repository.user.UserIntegralDetailRepository;
 import com.daoyintech.daoyin_release.repository.user.UserIntegralRepository;
@@ -54,13 +55,7 @@ public class UserIntegralServiceImpl implements UserIntegralService {
     private UserIntegralRepository userIntegralRepository;
 
     @Autowired
-    private UserIntegralService userIntegralService;
-
-    @Autowired
-    private BargainOrderService bargainOrderService;
-
-    @Autowired
-    private BargainJoinerService bargainJoinerService;
+    private BargainOrderRepository bargainOrderRepository;
 
     @Autowired
     private BargainJoinerRepository bargainJoinerRepository;
@@ -125,7 +120,7 @@ public class UserIntegralServiceImpl implements UserIntegralService {
 
     //    用户减少积分
     public UserIntegral updateUserPoint(BigDecimal point, User user) {
-        UserIntegral integral = userIntegralService.findByUser(user);
+        UserIntegral integral = findByUser(user);
         log.info("{}:用户积分变动:变化用户 id = {} 原本积分 integral = {}",DateUtils.getStringDate(),user.getId(),integral.getIntegral());
         integral.setIntegral(integral.getIntegral().add(point));
         UserIntegral integral1 = userIntegralRepository.save(integral);
@@ -140,7 +135,7 @@ public class UserIntegralServiceImpl implements UserIntegralService {
     @Override
     public synchronized void userIntegralDraw(Order order) {
         if (order.getOrderType().equals(OrderType.砍价订单)) {
-            BargainOrder bargainOrder = bargainOrderService.findByOrderId(order.getId());
+            BargainOrder bargainOrder = bargainOrderRepository.findByOrderId(order.getId());
             List<BargainJoiner> joiners = bargainJoinerRepository.findByBargainOrderId(bargainOrder.getId());
             for (BargainJoiner joiner : joiners){
                 //String token = bargainOrder.getOrderNo()+"_"+joiner.getJoinerId();
@@ -151,7 +146,7 @@ public class UserIntegralServiceImpl implements UserIntegralService {
 
                 log.info("{}:用户抽取的积分:{}:{}",DateUtils.getStringDate(),joinerUser.getNickName(),userInteger);
                 //每个参与者获得积分
-                userIntegralService.updateUserPoint(new BigDecimal(userInteger),joinerUser);
+                updateUserPoint(new BigDecimal(userInteger),joinerUser);
                 userIntegralDetailService.buildUserIntegralDetail(order, joinerUser,new BigDecimal(userInteger), UserIntegralFromType.帮助朋友);
                 //积分卷
                 if (BargainHelpType.getType(3).equals(joiner.getType())){
@@ -159,7 +154,7 @@ public class UserIntegralServiceImpl implements UserIntegralService {
 
                     Integer integer = drawService.drawJackpotIntegral();
 
-                    userIntegralService.updateUserPoint(new BigDecimal(integer),orderUser);
+                    updateUserPoint(new BigDecimal(integer),orderUser);
                     userIntegralDetailService.buildUserIntegralDetail(order, orderUser,new BigDecimal(integer), UserIntegralFromType.积分卷);
                 }
             }
@@ -174,7 +169,7 @@ public class UserIntegralServiceImpl implements UserIntegralService {
         List<BargainJoiner> myJoiners = bargainJoinerRepository.findByJoinerIdOrderByCreatedAtDesc(user.getId());
         for (BargainJoiner bargainJoiner : myJoiners) {
             //分享订单
-            BargainOrder bargainOrder = bargainOrderService.findOne(bargainJoiner.getBargainOrderId());
+            BargainOrder bargainOrder = bargainOrderRepository.findById(bargainJoiner.getBargainOrderId()).orElse(null);
             if (StringUtils.isEmpty(bargainOrder) || !bargainOrder.getStatus().equals(BargainOrderStatus.完成)){
                 continue;
             }
