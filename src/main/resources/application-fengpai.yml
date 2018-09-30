@@ -30,8 +30,8 @@ wx:
   home_page: pages/index/main
 # 公众号
 official:
-  appId: wxfb9e26b638aa9850
-  appSecret: d347eb6995809a05de9b50938310374c
+  appId: wxe9c5b482fb53e33d
+  appSecret: 1bb4065e6091b291e16c2cd57014c6df
 integral:
   min_withdraw_standard: 1000
   min_withdraw_money: 10

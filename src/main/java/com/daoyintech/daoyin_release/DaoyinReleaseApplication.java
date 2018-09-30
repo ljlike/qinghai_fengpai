@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-@EnableAsync
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @MapperScan("com.daoyintech.daoyin_release.mappers")
