@@ -25,6 +25,7 @@ import java.util.List;
 /**
  * Created by lj on 2018/9/19 14:59
  */
+
 @Controller
 @RequestMapping("/reservation")
 @Slf4j
@@ -47,6 +48,15 @@ public class ReservationController extends BaseUserController {
 
     @Value("${wx.service_open_id}")
     private String serviceOpenId;
+
+    @Value("${wx.service_phone}")
+    private String servicePhone;
+
+    @GetMapping("/phone")
+    @ResponseBody
+    public String getServicePhone(){
+        return servicePhone;
+    }
 
     @GetMapping("/show")
     public String searchReservation() {
